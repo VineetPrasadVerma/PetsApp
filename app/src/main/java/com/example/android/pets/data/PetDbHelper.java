@@ -27,16 +27,16 @@ public class PetDbHelper extends SQLiteOpenHelper {
 
     //This is called when the database is created for the first time.
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String SQL_CREATE_ENTRIES = "CREATE TABLE " + PetEntry.TABLE_NAME + " ("
+    public void onCreate(SQLiteDatabase db) {
+        String SQL_CREATE_PETS_TABLE =  "CREATE TABLE " + PetEntry.TABLE_NAME + " ("
                 + PetEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + PetEntry.COLUMN_PET_NAME + " TEXT NOT NULL, "
                 + PetEntry.COLUMN_PET_BREED + " TEXT, "
                 + PetEntry.COLUMN_PET_GENDER + " INTEGER NOT NULL, "
                 + PetEntry.COLUMN_PET_WEIGHT + " INTEGER NOT NULL DEFAULT 0);";
-        Log.i(LOG_TAG, SQL_CREATE_ENTRIES);
+        Log.i(LOG_TAG, SQL_CREATE_PETS_TABLE);
         //Execute the SQL statement.
-        sqLiteDatabase.execSQL(SQL_CREATE_ENTRIES);
+        db.execSQL(SQL_CREATE_PETS_TABLE);
     }
 
     //This is called when the database needs to be upgraded.
