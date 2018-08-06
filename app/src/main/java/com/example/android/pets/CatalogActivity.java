@@ -119,7 +119,7 @@ public class CatalogActivity extends AppCompatActivity {
                 int currentWeight = cursor.getInt(weightColumnIndex);
                 // Display the values from each column of the current row in the cursor in the TextView
                 displayView.append(("\n" + currentID + " - " +
-                        currentName + " - " + currentBreedName + " - " + currentGender + " - " + currentWeight));
+                        currentName + " - " + currentBreedName + " - " + currentGender + " - " + currentWeight  ));
             }
         } finally {
             // Always close the cursor when you're done reading from it. This releases all its
@@ -145,7 +145,7 @@ public class CatalogActivity extends AppCompatActivity {
         values.put(PetEntry.COLUMN_PET_GENDER, PetEntry.GENDER_MALE);
         values.put(PetEntry.COLUMN_PET_WEIGHT, 7);
 
-        // Insert the new row, returning the primary key value of the new row
+        // Insert the new row, returning the primary key value of the new row.
         long newRowId = db.insert(PetEntry.TABLE_NAME, null, values);
 
     }
