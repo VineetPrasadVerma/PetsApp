@@ -19,6 +19,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +28,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.android.pets.data.PetContract;
 import com.example.android.pets.data.PetDbHelper;
 import com.example.android.pets.data.PetContract.PetEntry;
 
@@ -66,9 +68,6 @@ public class CatalogActivity extends AppCompatActivity {
      */
     private void displayDatabaseInfo() {
 
-        // Create and/or open a database to read from it
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
-
         String[] projection = {
                 PetEntry._ID,
                 PetEntry.COLUMN_PET_NAME,
@@ -76,7 +75,7 @@ public class CatalogActivity extends AppCompatActivity {
                 PetEntry.COLUMN_PET_GENDER,
                 PetEntry.COLUMN_PET_WEIGHT
         };
-        Cursor cursor = db.query(
+       /** Cursor cursor = db.query(
                 PetEntry.TABLE_NAME,   // The table to query
                 projection,             // The array of columns to return (pass null to get all)
                 null,              // The columns for the WHERE clause
@@ -84,7 +83,11 @@ public class CatalogActivity extends AppCompatActivity {
                 null,                   // don't group the rows
                 null,                   // don't filter by row groups
                 null              // The sort order
-        );
+        );*/
+
+        // Does a query against the table and returns a Cursor object
+       Cursor cursor = getContentResolver().query((PetEntry.CONTENT_URI),
+               projection, null, null, null);
 
         TextView displayView = (TextView) findViewById(R.id.text_view_pet);
 
