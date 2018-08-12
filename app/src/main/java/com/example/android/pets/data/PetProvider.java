@@ -126,7 +126,7 @@ public class PetProvider extends ContentProvider {
     private Uri insertPet(Uri uri, ContentValues values) {
         // Check that the name is not null
         String name = values.getAsString(PetEntry.COLUMN_PET_NAME);
-        if (name == null || name.isEmpty()) {
+        if (name == null) {
             throw new IllegalArgumentException("Pet requires a name");
         }
 
@@ -144,7 +144,7 @@ public class PetProvider extends ContentProvider {
 
         // No need to check the breed, any value is valid (including null).
 
-        // Get writeable database
+        // Get writable database
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
         // Insert the new pet with the given values
